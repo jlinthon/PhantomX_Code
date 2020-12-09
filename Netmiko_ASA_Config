@@ -24,4 +24,4 @@ output = net_connect.send_command(
     '\n' 
     'show int ip br'
 )
-Print(output)
+print(output)
