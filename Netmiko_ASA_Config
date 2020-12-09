@@ -1,0 +1,27 @@
+#Do verification command at the end to ensure configuration worked#
+
+from netmiko import ConnectHandler
+
+cisco_asa = {
+    'device_type':   'cisco_asa',
+    'host':   '192.168.1.1',
+    'username':   '***',
+    'port':   22, 
+    'secret':   '***'
+
+}
+
+net_connect = ConnectHandler (**cisco_asa, secret='***')
+
+output = net_connect.send_command(
+    'conf t'
+    '\n'
+    'interface vlan 51'
+    '\n'
+    'ip address 192.168.2.1 255.255.255.0'
+    '\n'
+    'no shut'
+    '\n' 
+    'show int ip br'
+)
+Print(output)
