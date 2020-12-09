@@ -1,0 +1,16 @@
+from netmiko import ConnectHandler
+
+cisco_asa = {
+    'device_type':   'cisco_asa',
+    'host':   '192.168.1.1',
+    'username':   'pix',
+    'port':   22, 
+    'secret':   'cisco'
+
+}
+
+net_connect = ConnectHandler (**cisco_asa, secret='cisco')
+
+output = net_connect.send_command('show int ip br')
+
+Print(output)
