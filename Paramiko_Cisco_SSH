@@ -1,0 +1,20 @@
+#! RUN ON WINDOWS OS !#
+
+import paramiko
+import time
+import pprint
+
+ip_address = "192.168.1.1"
+username = "pix"
+password = "cisco"
+ssh_client = paramiko.SSHClient()
+ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+ssh_client.connect(hostname=ip_address,username=username,password=password)
+print("Successful connection", ip_address)
+remote_connection = ssh_client.invoke_shell()
+remote_connection.send("enable\r\n")
+remote_connection.send("cisco\r\n")
+remote_connection.send("show int ip br\r\n")
+time.sleep(1)
+output = remote_connection.recv(65535)
+pprint.pprint(output)
