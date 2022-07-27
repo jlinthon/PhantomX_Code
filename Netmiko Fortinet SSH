@@ -1,0 +1,19 @@
+import os
+import getpass
+from netmiko import ConnectHandler
+from getpass import getpass
+
+Fortigate90D = {
+    'device_type':   'fortinet',
+    'host':   input('Enter IP Address: ',
+    'username':   input('Enter Username: '),
+    'port':   ****,
+    'password':   getpass('Enter Password: '),
+
+}
+
+net_connect = ConnectHandler (**Fortigate90D)
+
+output = net_connect.send_command('di ip addr li')
+
+print(output)
