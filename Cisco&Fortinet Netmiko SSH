@@ -1,0 +1,37 @@
+import os
+import getpass
+from netmiko import ConnectHandler
+from getpass import getpass
+
+Fortigate90D = {
+    'device_type':   'fortinet',
+    'host':   input('Enter Host IP Address: '),
+    'username':  input('Enter Username: '),
+    'port':   input('Enter SSH Port Number: '),
+    'password':   getpass('Enter Password: '),
+
+}
+
+CiscoASA = {
+    'device_type':   'cisco_asa',
+    'host':   input('Enter Host IP Address: '),
+    'username':  input('Enter Username: '),
+    'port':   input('Enter SSH Port Number: '),
+    'password':   getpass('Enter Password: '),
+
+}
+
+
+net_connect = ConnectHandler (**Fortigate90D)
+
+output = net_connect.send_command('di ip addr li')
+
+print(output)
+
+net_connect = ConnectHandler (**CiscoASA)
+
+output = net_connect.send_command('show int ip br')
+
+print(output)
+exit()
+
